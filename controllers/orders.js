@@ -1,39 +1,39 @@
-import Category from "../models/Category.js";
+import Order from "../models/Order.js";
 
-export const getCategories = async (req, res) => {
+export const getOrders = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit);
-    const categories = await Category.findAll();
+    const orders = await Order.findAll();
     if (!isNaN(limit) && limit > 0) {
-      res.json(categories.slice(0, limit));
+      res.json(orders.slice(0, limit));
     } else {
-      res.json(categories);
+      res.json(orders);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-export const createCategory = async (req, res) => {
+export const createOrder = async (req, res) => {
   try {
     const {
-      body: { name },
+      body: { userId, products, total },
     } = req;
-    if (!name)
-      return res.status(400).json({ error: "The category is required" });
-    const result = await Category.create(req.body);
-    res.status(200).json({ message: "Category created", result });
+    if (!userId || !products || !total)
+      return res.status(400).json({ error: "All field are required" });
+    const result = await Order.create(req.body);
+    res.status(200).json({ message: "Order created", result });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
 
-export const getCategory = async (req, res) => {
+export const getOrder = async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await Category.findByPk(id);
-    if (!result) return res.status(404).json({ error: "Category not found" });
+    const result = await Order.findByPk(id);
+    if (!result) return res.status(404).json({ error: "Order not found" });
     res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -41,34 +41,34 @@ export const getCategory = async (req, res) => {
   }
 };
 
-export const updateCategory = async (req, res) => {
+export const updateOrder = async (req, res) => {
   try {
     const {
-      body: { name },
+      body: { userId, products, total },
       params: { id },
     } = req;
-    if (!name)
+    if (!userId || !products || !total)
       return res.status(400).json({
-        error: "The category is required",
+        error: "All field are required",
       });
-    const category = await Category.findByPk(id);
-    if (!category) return res.status(404).json({ error: "Category not found" });
-    await category.update(req.body);
-    res.json(category);
+    const order = await Order.findByPk(id);
+    if (!order) return res.status(404).json({ error: "Order not found" });
+    await order.update(req.body);
+    res.json(order);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-export const deleteCategory = async (req, res) => {
+export const deleteOrder = async (req, res) => {
   try {
     const {
       params: { id },
     } = req;
-    const user = await Category.findByPk(id);
-    if (!user) return res.status(404).json({ error: "Category not found" });
+    const user = await Order.findByPk(id);
+    if (!user) return res.status(404).json({ error: "Order not found" });
     await user.destroy();
-    res.json({ message: "Category deleted" });
+    res.json({ message: "Order deleted" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
