@@ -1,19 +1,17 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/index.js";
-import Category from "./Category.js"; 
+import Product from "./Product.js";
 
 export const Product = sequelize.define("Product", {
-  
-    name: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-    
-    price: {
+
+  price: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
-  
 });
 
 sequelize.sync();
