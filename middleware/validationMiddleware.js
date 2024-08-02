@@ -22,7 +22,7 @@ const orderSchema = Joi.object({
     productId: Joi.number().required(),
     quantity: Joi.number().required()
   })).required(),
-  total: Joi.number().required()
+      total: Joi.number().required()
 });
 
 const validateUser = (req, res, next) => {
