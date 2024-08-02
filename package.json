@@ -12,10 +12,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "ecommerce-api": "file:",
     "express": "^4.19.2",
+    "joi": "^17.13.3",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.3",
-    "ecommerce-api": "file:"
+    "sequelize": "^6.37.3"
   }
 }

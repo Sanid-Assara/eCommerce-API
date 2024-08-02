@@ -1,16 +1,12 @@
-import Product from "../models/Product.js";
+import ProductModel from "../models/Product.js";
+import { Product } from "../schemas/productSchemas.js";
 
 export const getProducts = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit);
     const products = await Product.findAll();
-    if (!isNaN(limit) && limit > 0) {
-      res.json(products.slice(0, limit));
-    } else {
-      res.json(products);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching products" });
   }
 };
 

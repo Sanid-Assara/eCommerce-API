@@ -1,16 +1,12 @@
-import User from "../models/User.js";
+import UserModel from "../models/User.js";
+import { User } from "../schemas/userSchemas.js";
 
 export const getUsers = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit);
     const users = await User.findAll();
-    if (!isNaN(limit) && limit > 0) {
-      res.json(users.slice(0, limit));
-    } else {
-      res.json(users);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching users" });
   }
 };
 

@@ -6,13 +6,14 @@ import {
   updateOrder,
   deleteOrder,
 } from "../controllers/orders.js";
+import { validateOrder } from "../middleware/validationMiddleware.js";
 
 const ordersRouter = express.Router();
 
 ordersRouter.get("/", getOrders);
-ordersRouter.post("/", createOrder);
+ordersRouter.post("/", validateOrder, createOrder);
 ordersRouter.get("/:id", getOrder);
-ordersRouter.put("/:id", updateOrder);
+ordersRouter.put("/:id", validateOrder, updateOrder);
 ordersRouter.delete("/:id", deleteOrder);
 
 export default ordersRouter;
