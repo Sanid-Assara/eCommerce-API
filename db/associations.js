@@ -1,8 +1,8 @@
-import Category from './Category.js';
-import Product from './Product.js';
-import User from './User.js';
-import Order from './Order.js';
-import OrderProduct from './OrderProduct.js';
+import Category from '../models/Category.js';
+import Product from '../models/Product.js';
+import User from '../models/User.js';
+import Order from '../models/Order.js';
+import OrderProduct from '../models/OrderProduct.js';
 
 
 export const setupAssociations = () => {
