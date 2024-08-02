@@ -1,16 +1,12 @@
-import Category from "../models/Category.js";
+import CategoryModel from "../models/Category.js";
+import { Category } from "../schemas/categorySchemas.js";
 
 export const getCategories = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit);
     const categories = await Category.findAll();
-    if (!isNaN(limit) && limit > 0) {
-      res.json(categories.slice(0, limit));
-    } else {
-      res.json(categories);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.json(categories);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching categories" });
   }
 };
 
@@ -73,3 +69,4 @@ export const deleteCategory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+

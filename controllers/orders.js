@@ -1,16 +1,12 @@
-import Order from "../models/Order.js";
+import OrderModel from "../models/Order.js";
+import { Order } from "../schemas/orderSchemas.js";
 
 export const getOrders = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit);
     const orders = await Order.findAll();
-    if (!isNaN(limit) && limit > 0) {
-      res.json(orders.slice(0, limit));
-    } else {
-      res.json(orders);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching orders" });
   }
 };
 
