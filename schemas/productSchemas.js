@@ -10,8 +10,5 @@ export const Product = sequelize.define("Product", {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
-  categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
+ 
 });
