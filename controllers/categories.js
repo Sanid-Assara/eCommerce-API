@@ -1,5 +1,4 @@
-import CategoryModel from "../models/Category.js";
-import { Category } from "../schemas/categorySchemas.js";
+import { Category } from "../db/associations.js";
 
 export const getCategories = async (req, res) => {
   try {
@@ -69,4 +68,3 @@ export const deleteCategory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-

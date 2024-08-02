@@ -1,8 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/index.js";
 
-
-export const Product = sequelize.define("Product", {
+const Product = sequelize.define("Product", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -13,7 +12,5 @@ export const Product = sequelize.define("Product", {
     allowNull: false,
   },
 });
-
-sequelize.sync();
 
 export default Product;

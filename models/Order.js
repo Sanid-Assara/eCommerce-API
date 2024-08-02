@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/index.js";
 
-export const Order = sequelize.define("Order", {
+const Order = sequelize.define("Order", {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -15,7 +15,5 @@ export const Order = sequelize.define("Order", {
     allowNull: false,
   },
 });
-
-Order.sync();
 
 export default Order;

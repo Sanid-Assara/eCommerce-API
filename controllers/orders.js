@@ -1,9 +1,8 @@
-import OrderModel from "../models/Order.js";
-import { Order } from "../schemas/orderSchemas.js";
+import { Order, User } from "../db/associations.js";
 
 export const getOrders = async (req, res) => {
   try {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({ include: User });
     res.json(orders);
   } catch (err) {
     res.status(500).json({ message: "Error fetching orders" });
